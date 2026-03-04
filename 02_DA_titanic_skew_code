@@ -1,0 +1,23 @@
+# Datga analytics. pandas, titanic , skewness
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+url = "https://raw.githubusercontent.com/victor4friend-eng/data_pub/refs/heads/main/01_titanic_csv.csv"
+df = pd.read_csv(url)
+
+# Remove missing age values
+age = df["Age"].dropna()
+# Calculating skewness
+skew_value = age.skew()
+# Drawing a graph
+plt.figure(figsize=(8,5))
+sns.histplot(age, bins=30, kde=True)
+# Show average line
+plt.axvline(age.mean(), linestyle='--')
+
+plt.title(f"Age Distribution (Skewness = {skew_value:.3f})")
+plt.xlabel("Age")
+plt.ylabel("Frequency")
+plt.show()
+print("Skewness:", skew_value)

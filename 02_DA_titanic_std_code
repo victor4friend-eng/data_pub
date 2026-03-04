@@ -1,0 +1,20 @@
+# Data Analysis. Pandas , titanic data, std
+import pandas as pd
+import matplotlib.pyplot as plt
+url = "https://raw.githubusercontent.com/victor4friend-eng/data_pub/refs/heads/main/01_titanic_csv.csv"
+df = pd.read_csv(url)
+age_std = df["Age"].std()
+# 1. Calculating mean and standard deviation ###
+mean_val = df['Age'].mean()
+std_val = df['Age'].std()
+# 2. Draw a histogram ###
+df['Age'].plot(kind='hist', bins=5, alpha=0.7, color='skyblue', edgecolor='black')
+
+# 3. Add mean and standard deviation lines
+plt.axvline(mean_val, color='red', linestyle='dashed', linewidth=2, label=f'Mean: {mean_val:.2f}')
+plt.axvline(mean_val + std_val, color='orange', linestyle='--', label=f'Std Dev: {std_val:.2f}')
+plt.axvline(mean_val - std_val, color='orange', linestyle='--')
+
+plt.title('Age Distribution with Std Dev')
+plt.legend()
+plt.show()
